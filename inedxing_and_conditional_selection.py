@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 series = pd.Series({'Bulbasaur': 49, 'Charmander': 43, 'Pikachu': 40}, name='Pokemon Savunma Güçleri')
-# bir index değerini keyine göre olma
+# bir index değerini key'ine göre alma
 print(series['Pikachu'])
 # bir index değerini indexe göre alma
 print(series.iloc[0])
