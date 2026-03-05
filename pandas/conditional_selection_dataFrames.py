@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 #dataframe oluşturalım
-pokemon = pd.DataFrame({'atak': [49, 52, 40, 65, 44], 'savunma': [56, 78, 65, 23, 99], 'hiz': [87,94, 95, 29, 47], 'tur': ['tas', 'ates', 'su', 'kaya', 'cicek']}, index=["Bulbasaur", "Charmander", "Squirtle", "Pikachu", "Onix"])
+pokemon = pd.DataFrame({'atak': [49, 52, 48, 55, 45], 'savunma': [49, 43, 65, 40, 160], 'hiz': [45, 65, 43, 90, 70], 'tur': ['ot', 'ates', 'su', 'elektrik', 'kaya']}, index=["Bulbasaur", "Charmander", "Squirtle", "Pikachu", "Onix"])
 
 #koşullu seçim yapalım
 print(pokemon["hiz"] > 60)
@@ -41,4 +41,20 @@ pokemon = pokemon.rename(
     "boy": "height"
   }
 )
+print(pokemon)
+
+# yeni satır ekleme
+# pandas 2.0'da `append` kaldırıldı; bunun yerine concat veya doğrudan loc kullanabilirsiniz
+new_pokemon = pd.Series({
+  "attack": 104,
+  "defense": 78,
+  "type": "fire",
+  "speed": 100,
+  "height": 1.7
+}, name="Charizard")
+# concat ile satır ekleme
+pokemon = pd.concat([pokemon, new_pokemon.to_frame().T])
+print(pokemon)
+#yeni sütun oluşturma
+pokemon["total power"] = pokemon["attack"] + pokemon["defense"] + pokemon["speed"]
 print(pokemon)
